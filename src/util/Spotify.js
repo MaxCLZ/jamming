@@ -12,16 +12,13 @@ const Spotify = {
     //check access token match
     const accesTokenMatch = window.location.href.match(/access_token=([^&]*)/);
     const expireInMatch = window.location.href.match(/expires_in=([^&]*)/);
-    debugger;
     if (accesTokenMatch && expireInMatch) {
-      debugger;
       accessToken = accesTokenMatch[1];
       const expiresIn = Number(expireInMatch[1]);
       window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
       window.history.pushState("Access Token", null, "/");
       return accessToken;
     } else {
-      debugger;
       console.log(this.search);
       const accessURL = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
       window.location = accessURL;
